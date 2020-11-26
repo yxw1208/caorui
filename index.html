@@ -9,7 +9,7 @@
     <meta name="renderer" content="webkit">
     <meta name="referrer" content="never">
     <title>曹蕊的个人简历</title>
-    <link href="./style.2.7.14.css" rel="stylesheet">
+    <script src="./jquery.js"></script>
     <link href="./vant.css" rel="stylesheet">
     <script src="./vue.2.6.12.min.js"></script>
     <script src="./vant.js"></script>
@@ -19,26 +19,69 @@
 
     <body>
     <div id="app">
+        <van-tabs sticky swipeable @change="onClick">
+            <van-tab name="jl" title="简历">
+                <van-row  style="margin-top: 10px">
+                    <van-col span="12"  offset="1">
+                        <van-cell-group>
+                            <a href="tel:17839506919">
+                            <van-button icon="phone-o" block type="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">
+                                联系我：17839506919
+                            </van-button>
+                            </a>
+                        </van-cell-group>
+                    </van-col>
 
-        <van-row>
-            <van-col span="24">
-                <van-image src="./images.jpg"></van-image>
-            </van-col>
-        </van-row>
+                    <van-col span="9"  offset="1">
+                        <van-cell-group>
+                            <a href="2年-UI设计--曹蕊-17630050035.doc">
+                            <van-button icon="down" block type="small" color="linear-gradient(to right, #4bb0ff, #7232dd)" >下载简历</van-button>
+                            </a>
+
+                        </van-cell-group>
+                    </van-col>
+                </van-row>
+
+            </van-tab>
+            <van-tab name="zp" title="作品">
+                <van-row>
+                    <van-col span="24">
+                        <van-image  src="./images.jpg"></van-image>
+                    </van-col>
+                </van-row>
+            </van-tab>
+
+        </van-tabs>
     </div>
     <script>
         var app = new Vue({
             el:'#app',
             // delimiters: ['${', '}'],
             data: {
-                msg:'12'
+
             },
             created() {
-                this.$toast.loading({
-                    duration: 0, // 持续展示 toast
-                    message: '图片较大，加载中...',
-                    // forbidClick: true,
-                });
+
+            },
+            methods:{
+                onClick(name,title){
+                    if (name=='zp'){
+                      let toast =  this.$toast.loading({
+                          duration: 0, // 持续展示 toast
+                          message: '图片较大，加载中...',
+                          // forbidClick: true,
+                      });
+                      let second = 3;
+                      const timer = setInterval(() => {
+                          if ($('img').height()>10000) {
+                              clearInterval(timer);
+                              // 手动清除 Toast
+                              toast.clear();
+                          }
+                      }, 1000);
+                  }
+
+                }
             }
             });
     </script>

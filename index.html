@@ -19,7 +19,7 @@
 
     <body>
     <div id="app">
-        <van-loading color="#1989fa" />
+
         <van-row>
             <van-col span="24">
                 <van-image src="./images.jpg"></van-image>
@@ -34,7 +34,11 @@
                 msg:'12'
             },
             created() {
-
+                this.$toast.loading({
+                    duration: 0, // 持续展示 toast
+                    message: '图片较大，加载中...',
+                    // forbidClick: true,
+                });
             }
             });
     </script>
